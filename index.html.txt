@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Travel Planner - Domestic Flights</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>AI Travel Planner - Domestic Flights</h1>
+  </header>
+  <main>
+    <section class="planner-form">
+      <h2>Plan Your Journey</h2>
+      <form id="travelForm">
+        <label for="from">From:</label>
+        <input type="text" id="from" placeholder="Enter departure city (e.g., Delhi)" required />
+
+        <label for="to">To:</label>
+        <input type="text" id="to" placeholder="Enter destination city (e.g., Mumbai)" required />
+
+        <label for="budget">Budget ($):</label>
+        <input type="number" id="budget" placeholder="Enter your budget" required />
+
+        <label for="interests">Interests:</label>
+        <select id="interests" required>
+          <option value="adventure">Adventure</option>
+          <option value="beach">Beach</option>
+          <option value="cultural">Cultural</option>
+          <option value="nature">Nature</option>
+          <option value="shopping">Shopping</option>
+        </select>
+
+        <button type="submit">Get Itinerary</button>
+      </form>
+    </section>
+
+    <section class="flight-results" id="flightResults">
+      <h2>Available Flights</h2>
+      <ul id="flightList"></ul>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+// script.js
+
+// Sample flight data (more than 50 domestic routes in India)
+const flightData = [
+  { from: "Delhi", to: "Mumbai", cost: 150, airline: "Air India" },
+  { from: "Delhi", to: "Chennai", cost: 200, airline: "IndiGo" },
+  { from: "Delhi", to: "Goa", cost: 100, airline: "SpiceJet" },
+  { from: "Delhi", to: "Bangalore", cost: 250, airline: "AirAsia" },
+  { from: "Delhi", to: "Kolkata", cost: 220, airline: "Vistara" },
+  { from: "Mumbai", to: "Bangalore", cost: 180, airline: "IndiGo" },
+  { from: "Mumbai", to: "Chennai", cost: 160, airline: "GoAir" },
+  { from: "Mumbai", to: "Delhi", cost: 170, airline: "Air India" },
+  { from: "Mumbai", to: "Goa", cost: 120, airline: "SpiceJet" },
+  { from: "Bangalore", to: "Delhi", cost: 230, airline: "IndiGo" },
+  { from: "Bangalore", to: "Kolkata", cost: 250, airline: "Vistara" },
+  { from: "Bangalore", to: "Goa", cost: 90, airline: "AirAsia" },
+  { from: "Kolkata", to: "Delhi", cost: 240, airline: "Air India" },
+  { from: "Kolkata", to: "Bangalore", cost: 220, airline: "IndiGo" },
+  { from: "Chennai", to: "Mumbai", cost: 180, airline: "GoAir" },
+  { from: "Chennai", to: "Goa", cost: 150, airline: "IndiGo" },
+  // Add 35 more flights here (simulate or gather from real data source)
+  { from: "Hyderabad", to: "Delhi", cost: 210, airline: "Vistara" },
+  { from: "Hyderabad", to: "Chennai", cost: 130, airline: "SpiceJet" },
+  { from: "Hyderabad", to: "Goa", cost: 170, airline: "Air India" },
+  { from: "Pune", to: "Mumbai", cost: 60, airline: "IndiGo" },
+  { from: "Pune", to: "Bangalore", cost: 140, airline: "AirAsia" },
+  { from: "Bhopal", to: "Delhi", cost: 180, airline: "SpiceJet" },
+  { from: "Indore", to: "Mumbai", cost: 130, airline: "Air India" },
+  { from: "Ahmedabad", to: "Delhi", cost: 200, airline: "Vistara" },
+  { from: "Ahmedabad", to: "Mumbai", cost: 150, airline: "GoAir" },
+  // More flight data...
+];
+
+// Form submission handler
+document.getElementById("travelForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  // Get user inputs
+  const from = document.getElementById("from").value.trim().toLowerCase();
+  const to = document.getElementById("to").value.trim().toLowerCase();
+  const budget = parseFloat(document.getElementById("budget").value);
+  const interest = document.getElementById("interests").value;
+
+  // Filter flights based on user input
+  const availableFlights = flightData.filter(
+    flight => flight.from.toLowerCase() === from &&
+              flight.to.toLowerCase() === to &&
+              flight.cost <= budget
+  );
+
+  // Display flight results
+  const flightList = document.getElementById("flightList");
+  flightList.innerHTML = ""; // Clear previous results
+
+  if (availableFlights.length === 0) {
+    flightList.innerHTML = "<li>No flights available within your budget.</li>";
+  } else {
+    availableFlights.forEach(flight => {
+      const listItem = document.createElement("li");
+      listItem.innerHTML = `
+        <strong>${flight.from} → ${flight.to}</strong><br>
+        Airline: ${flight.airline}<br>
+        Cost: ₹${flight.cost}
+      `;
+      flightList.appendChild(listItem);
+    });
+  }
+});
